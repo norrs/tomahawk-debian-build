@@ -57,7 +57,7 @@ build_libqtweet:
 	cd $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY) && dpkg-buildpackage -j4
 
 install_libqtweet:
-	for deb_file in $(LIBQTWEET_DIR)/$(LIBQTWEET); sudo dpkg -i $$deb_file; done
+	for deb_file in $(LIBQTWEET_DIR)/*.deb; do sudo dpkg -i $$deb_file; done
 
 ##########
 # libjreen
@@ -72,7 +72,7 @@ build_libjreen:
 	cd $(LIBJREEN_DIR)/$(LIBJREEN_RELEASE) && dpkg-buildpackage -j4
 
 install_libjreen:
-	for deb_file in $(LIBJREEN_DIR)/$(LIBJREEN); sudo dpkg -i $$deb_file; done
+	for deb_file in $(LIBJREEN_DIR)/*.deb; do sudo dpkg -i $$deb_file; done
 
 
 #############
@@ -88,6 +88,9 @@ fetch_libechonest:
 build_libechonest:
 	cd $(LIBECHONEST_DIR)/$(LIBECHONEST_RELEASE_DIR) && DEBFULLNAME="$(DEBFULLNAME)" DEBEMAIL="$(DEBEMAIL)" dch "Automated build of $(LIBECHONEST_RELEASE)" -v $(LIBECHONEST_VERSION)
 	cd $(LIBECHONEST_DIR)/$(LIBECHONEST_RELEASE_DIR) && dpkg-buildpackage -j4
+
+install_libechonest:
+	for deb_file in $(LIBECHONEST_DIR)/*.deb; do sudo dpkg -i $$deb_file; done
 
 ###########
 ## TOMAHAWK
@@ -106,3 +109,8 @@ build_tomahawk:
 	test -f $(TOMAHAWK_DIR)/$(TOMAHAWK)/debian/changelog && rm $(TOMAHAWK_DIR)/$(TOMAHAWK)/debian/changelog || exit 0 
 	cd $(TOMAHAWK_DIR)/$(TOMAHAWK) && DEBFULLNAME="$(DEBFULLNAME)" DEBEMAIL="$(DEBEMAIL)" dch --create --package $(TOMAHAWK) -v $(NIGHTLY) "Nightly build of $(TOMAHAWK)"
 	cd $(TOMAHAWK_DIR)/$(TOMAHAWK) && dpkg-buildpackage -j4
+
+install_tomahawk:
+	for deb_file in $(TOMAHAWK_DIR)/*.deb; do sudo dpkg -i $$deb_file; done
+
+all: nightly_libqtweet fetch_libjreen fetch_libechonest fetch_tomahawk build_libqtweet build_libjreen build_libechonest install_libqtweet install_libjreen install_libechonest build_tomahawk install_tomahawk
