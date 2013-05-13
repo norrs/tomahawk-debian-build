@@ -1,6 +1,9 @@
 *.log
-libqtweetlib/
 debian*/tmp
 debian*/files
 debian*/libqtweetlib-dev/
+libqtweetlib/
+libechonest/
+libjreen/
+tomahawk-player/
 

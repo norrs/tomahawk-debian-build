@@ -1,0 +1,54 @@
+Source: tomahawk-player
+Section: kde
+Priority: optional
+Maintainer: Roy Sindre Norangshol <roy.sindre@norangshol.no>
+Uploaders: Roy Sindre Norangshol <roy.sindre@norangshol.no>
+Build-Depends: cmake (>= 2.8.6),
+               debhelper (>= 7.3),
+               libboost-dev,
+               libattica-dev (>=0.4.1),
+               libasound2-dev,
+               libclucene-dev (>=2.3.3.4),
+               libechonest-dev (>=2.0.1),
+               libflac++-dev,
+               libgloox-dev,
+               libgnutls-dev,
+               libidn11-dev,
+               liblastfm-dev (>> 0.4.0),
+               libmad0-dev,
+               libogg-dev,
+               libphonon-dev,
+               libqca2-dev,
+               libqjson-dev,
+               libqt4-dev,
+               libqt4-opengl-dev,
+               libqtwebkit-dev,
+               libtag-extras-dev,
+               libtag1-dev,
+               libvorbis-dev,
+               pkg-kde-tools (>= 0.9),
+               libqtweetlib-dev (>=1.0),
+               libfftw3-dev,
+               libsamplerate0-dev,
+               libjreen-dbg (>= 1.1.1),
+               libjreen (>= 1.1.1),
+Standards-Version: 3.9.2
+Homepage: http://tomahawk-player.org
+
+Package: tomahawk-player
+Architecture: any
+Depends: libqca2-plugin-ossl,
+         libqt4-sql-sqlite,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: gstreamer0.10-plugins-ugly
+Description: Social media player
+ It hooks you up with your friends — connect with your
+ jabber/gtalk/twitter friends and share collections and playlists.
+
+Package: tomahawk-player-dbg
+Architecture: any
+Depends: tomahawk-player (= ${binary:Version}), ${misc:Depends}
+Description: Social media player - debugging symbols
+ This package contains the debugging symbols to be used for debugging
+ problems with the tomahawk package.

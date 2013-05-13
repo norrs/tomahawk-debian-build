@@ -1,0 +1,4 @@
+usr/lib/libjreen.so
+usr/lib/libjreen.so.*
+usr/include/jreen/*.h
+usr/lib/pkgconfig/libjreen.pc
