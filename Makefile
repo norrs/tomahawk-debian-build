@@ -103,6 +103,6 @@ build_tomahawk:
 	cd $(TOMAHAWK_DIR) && tar -cvzf $(TOMAHAWK)_$(NIGHTLY).orig.tar.gz $(TOMAHAWK)
 	cp -r debian_$(TOMAHAWK) $(TOMAHAWK_DIR)/$(TOMAHAWK)/debian
 	# This one is kinda stupid, should increase if it exist instead . yawn .
-	test -f $(TOMAHAWK_DIR)/$(TOMAHAWK)/debian/changelog && rm $(TOMAHAWK_DIR)/$(TOMAHAWK)/debian/changelog
+	test -f $(TOMAHAWK_DIR)/$(TOMAHAWK)/debian/changelog && rm $(TOMAHAWK_DIR)/$(TOMAHAWK)/debian/changelog || exit 0 
 	cd $(TOMAHAWK_DIR)/$(TOMAHAWK) && DEBFULLNAME="$(DEBFULLNAME)" DEBEMAIL="$(DEBEMAIL)" dch --create --package $(TOMAHAWK) -v $(NIGHTLY) "Nightly build of $(TOMAHAWK)"
 	cd $(TOMAHAWK_DIR)/$(TOMAHAWK) && dpkg-buildpackage -j4
