@@ -3,18 +3,19 @@ BASEDIR=$(CURDIR)
 DEBFULLNAME=Roy Sindre Norangshol
 DEBEMAIL=roy.sindre@norangshol.no
 
+B=$(BASEDIR)/build
 
 LIBQTWEET=libqtweetlib
-LIBQTWEET_DIR=$(BASEDIR)/$(LIBQTWEET)
+LIBQTWEET_DIR=$(B)/$(LIBQTWEET)
 LIBQTWEET_UPSTREAM_DIR=$(LIBQTWEET_DIR)/$(LIBQTWEET)-upstream
 
 LIBJREEN=libjreen
-LIBJREEN_DIR=$(BASEDIR)/$(LIBJREEN)
+LIBJREEN_DIR=$(B)/$(LIBJREEN)
 LIBJREEN_RELEASE_URL=http://qutim.org/dwnl/44/libjreen-1.1.1.tar.bz2
 LIBJREEN_RELEASE=libjreen-1.1.1
 
 LIBECHONEST=libechonest
-LIBECHONEST_DIR=$(BASEDIR)/$(LIBECHONEST)
+LIBECHONEST_DIR=$(B)/$(LIBECHONEST)
 LIBECHONEST_RELEASE_URL=http://files.lfranchi.com/libechonest-2.0.3.tar.bz2
 LIBECHONEST_RELEASE=libechonest_2.0.3
 # why not tr -  _  thingie ? :((( Makefile newbie. 
@@ -24,7 +25,7 @@ LIBECHONEST_DEBIAN=libechonest_2.0.1-1.debian
 LIBECHONEST_VERSION=2.0.3
 
 TOMAHAWK=tomahawk-player
-TOMAHAWK_DIR=$(BASEDIR)/$(TOMAHAWK)
+TOMAHAWK_DIR=$(B)/$(TOMAHAWK)
 TOMAHAWK_DEBIAN=$(TOMAHAWK)_$(NIGHTLY).orig.tar.gz
 TOMAHAWK_UPSTREAM_DIR=$(TOMAHAWK_DIR)/$(TOMAHAWK)-upstream
 TOMAHAWK_URL=https://github.com/tomahawk-player/tomahawk.git
@@ -86,7 +87,7 @@ fetch_libechonest:
 	cd $(LIBECHONEST_DIR) && tar xf $(LIBECHONEST_DEBIAN).tar.gz && cp -r $(LIBECHONEST_DIR)/debian $(LIBECHONEST_DIR)/$(LIBECHONEST_RELEASE_DIR)
 
 build_libechonest:
-	cd $(LIBECHONEST_DIR)/$(LIBECHONEST_RELEASE_DIR) && DEBFULLNAME="$(DEBFULLNAME)" DEBEMAIL="$(DEBEMAIL)" dch "Automated build of $(LIBECHONEST_RELEASE)" -v $(LIBECHONEST_VERSION)
+	cd $(LIBECHONEST_DIR)/$(LIBECHONEST_RELEASE_DIR) && DEBFULLNAME="$(DEBFULLNAME)" DEBEMAIL="$(DEBEMAIL)" dch "Automated build of $(LIBECHONEST_RELEASE)" -v $(LIBECHONEST_VERSION)-1
 	cd $(LIBECHONEST_DIR)/$(LIBECHONEST_RELEASE_DIR) && dpkg-buildpackage -j4
 
 install_libechonest:
