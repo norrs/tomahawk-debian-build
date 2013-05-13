@@ -1,0 +1,6 @@
+*.log
+libqtweetlib/
+debian*/tmp
+debian*/files
+debian*/libqtweetlib-dev/
+

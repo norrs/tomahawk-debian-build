@@ -1,0 +1,32 @@
+Source: libqtweetlib
+Section: libs
+Priority: optional
+Maintainer: Roy Sindre Norangshol <roy.sindre@norangshol.no>
+Uploaders: Roy Sindre Norangshol <roy.sindre@norangshol.no>
+Build-Depends: cmake,
+               debhelper (>= 8),
+               pkg-kde-tools (>= 0.9),
+               libqt4-dev,
+               libqt4-opengl-dev,
+               libqtwebkit-dev,
+               libqjson-dev
+Standards-Version: 3.9.2
+Homepage: https://github.com/minimoog/QTweetLib.git
+
+Package: libqtweetlib
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Description: qtweetlib
+ - Supports most of the Twitter API
+ - Supports XAuth and pin based authorization
+ - Modular
+
+Package: libqtweetlib-dev
+Architecture: any
+Depends: libqtweetlib (= ${binary:Version}),
+         ${misc:Depends}
+Description: qtweetlib development files 
+ - Supports most of the Twitter API
+ - Supports XAuth and pin based authorization
+ - Modular
