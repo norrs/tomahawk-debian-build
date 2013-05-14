@@ -29,12 +29,12 @@ Replace wheezy with your release-name if using testing (jenny) as aof May 14 201
 
 Add experimental and jessie/sid to your APT sources. (required for libattica0.4 liblastfm1 libquazip0)
 
-`
+```
  deb http://ftp.no.debian.org/debian jenny main contrib non-free
  deb-src http://ftp.no.debian.org/debian jenny main contrib non-free
  deb http://ftp.no.debian.org/debian experimental main contrib non-free
  deb-src http://ftp.no.debian.org/debian experimental main contrib non-free
-`
+```
 
 * apt-get update
 * apt-get install -t experimental libattica0.4 liblastfm1
