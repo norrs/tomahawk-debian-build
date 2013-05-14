@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 BASEDIR=$(CURDIR)
 
 DEBFULLNAME=Roy Sindre Norangshol (Rockj)
@@ -33,6 +35,13 @@ TOMAHAWK_DIR=$(B)/$(TOMAHAWK)
 TOMAHAWK_DEBIAN=$(TOMAHAWK)_$(NIGHTLY).orig.tar.gz
 TOMAHAWK_UPSTREAM_DIR=$(TOMAHAWK_DIR)/$(TOMAHAWK)-upstream
 TOMAHAWK_URL=https://github.com/tomahawk-player/tomahawk.git
+
+SSH_HOST=localhost 
+SSH_PORT=22
+SSH_USER=foo
+SSH_TARGET_DIR=/tmp
+ 
+-include $(BASEDIR)/Makefile.local
 
 
 NIGHTLY=$(shell date +'%Y.%m.%d.nightly')
@@ -117,5 +126,9 @@ build_tomahawk:
 
 install_tomahawk:
 	for deb_file in $(TOMAHAWK_DIR)/*.deb; do sudo dpkg -i $$deb_file; done
+
+rsync_upload:
+	rsync -e "ssh -p $(SSH_PORT)" -P -rvz --delete $(B)/*/*.{changes,dsc,deb,orig.tar.gz,debian.tar.gz} $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR) --cvs-exclude
+
 
 all: nightly_libqtweet fetch_libjreen fetch_libechonest fetch_tomahawk build_libqtweet build_libjreen build_libechonest install_libqtweet install_libjreen install_libechonest build_tomahawk install_tomahawk
