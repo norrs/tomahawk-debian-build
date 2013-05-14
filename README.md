@@ -24,22 +24,25 @@ These instructions should get you going quickly.
 Fetch \*.deb's from http://absint.online.ntnu.no/~norangsh/tomahawk/ for now.
 (these are my builds, updated whenever I feel for it ;-))
 
-Set default release in */etc/apt/apt.conf.d/99user* to: APT::Default-Release "wheezy"; 
+Set default release in */etc/apt/apt.conf.d/99user* to: `APT::Default-Release "wheezy";` 
 Replace wheezy with your release-name if using testing (jenny) as aof May 14 2013 for example.
 
 Add experimental and jessie/sid to your APT sources. (required for libattica0.4 liblastfm1 libquazip0)
 
+`
  deb http://ftp.no.debian.org/debian jenny main contrib non-free
  deb-src http://ftp.no.debian.org/debian jenny main contrib non-free
  deb http://ftp.no.debian.org/debian experimental main contrib non-free
  deb-src http://ftp.no.debian.org/debian experimental main contrib non-free
+`
 
-apt-get update
-apt-get install -t experimental libattica0.4 liblastfm1
-apt-get install -t jessie libquazip0
+* apt-get update
+* apt-get install -t experimental libattica0.4 liblastfm1
+* apt-get install -t jessie libquazip0
 
-dpkg -i tomahawk-player\*.deb
-apt-get install -f  (if needed.)
+
+* dpkg -i tomahawk-player\*.deb
+* apt-get install -f  (if needed.)
 
 
 ## TODO ##
