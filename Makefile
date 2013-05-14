@@ -1,7 +1,11 @@
 BASEDIR=$(CURDIR)
 
-DEBFULLNAME=Roy Sindre Norangshol
+DEBFULLNAME=Roy Sindre Norangshol (Rockj)
 DEBEMAIL=roy.sindre@norangshol.no
+
+CORES=8
+ICECC_BIN=/usr/lib/icecc/bin
+PATH := $(ICECC_BIN):${PATH}
 
 B=$(BASEDIR)/build
 
@@ -55,7 +59,7 @@ nightly_libqtweet: fetch_libqtweet
 build_libqtweet:
 	cp -r debian_$(LIBQTWEET) $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY)/debian
 	cd $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY) && DEBFULLNAME="$(DEBFULLNAME)" DEBEMAIL="$(DEBEMAIL)" dch --create -v $(NIGHTLY) "Nightly build $(shell date)" --package libqtweetlib
-	cd $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY) && dpkg-buildpackage -j4
+	cd $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY) && dpkg-buildpackage -j$(CORES)
 
 install_libqtweet:
 	for deb_file in $(LIBQTWEET_DIR)/*.deb; do sudo dpkg -i $$deb_file; done
@@ -70,7 +74,7 @@ fetch_libjreen:
 
 build_libjreen:
 	cp -r debian_$(LIBJREEN) $(LIBJREEN_DIR)/$(LIBJREEN_RELEASE)/debian
-	cd $(LIBJREEN_DIR)/$(LIBJREEN_RELEASE) && dpkg-buildpackage -j4
+	cd $(LIBJREEN_DIR)/$(LIBJREEN_RELEASE) && dpkg-buildpackage -j$(CORES)
 
 install_libjreen:
 	for deb_file in $(LIBJREEN_DIR)/*.deb; do sudo dpkg -i $$deb_file; done
@@ -88,7 +92,7 @@ fetch_libechonest:
 
 build_libechonest:
 	cd $(LIBECHONEST_DIR)/$(LIBECHONEST_RELEASE_DIR) && DEBFULLNAME="$(DEBFULLNAME)" DEBEMAIL="$(DEBEMAIL)" dch "Automated build of $(LIBECHONEST_RELEASE)" -v $(LIBECHONEST_VERSION)-1
-	cd $(LIBECHONEST_DIR)/$(LIBECHONEST_RELEASE_DIR) && dpkg-buildpackage -j4
+	cd $(LIBECHONEST_DIR)/$(LIBECHONEST_RELEASE_DIR) && dpkg-buildpackage -j$(CORES)
 
 install_libechonest:
 	for deb_file in $(LIBECHONEST_DIR)/*.deb; do sudo dpkg -i $$deb_file; done
@@ -109,7 +113,7 @@ build_tomahawk:
 	# This one is kinda stupid, should increase if it exist instead . yawn .
 	test -f $(TOMAHAWK_DIR)/$(TOMAHAWK)/debian/changelog && rm $(TOMAHAWK_DIR)/$(TOMAHAWK)/debian/changelog || exit 0 
 	cd $(TOMAHAWK_DIR)/$(TOMAHAWK) && DEBFULLNAME="$(DEBFULLNAME)" DEBEMAIL="$(DEBEMAIL)" dch --create --package $(TOMAHAWK) -v $(NIGHTLY) "Nightly build of $(TOMAHAWK)"
-	cd $(TOMAHAWK_DIR)/$(TOMAHAWK) && dpkg-buildpackage -j4
+	cd $(TOMAHAWK_DIR)/$(TOMAHAWK) && dpkg-buildpackage -j$(CORES)
 
 install_tomahawk:
 	for deb_file in $(TOMAHAWK_DIR)/*.deb; do sudo dpkg -i $$deb_file; done
