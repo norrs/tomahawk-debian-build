@@ -21,6 +21,9 @@ goals to install tomahawk from built Debian packages.
 
 These instructions should get you going quickly. 
 
+Fetch \*.deb's from http://absint.online.ntnu.no/~norangsh/tomahawk/ for now.
+(these are my builds, updated whenever I feel for it ;-))
+
 Set default release in */etc/apt/apt.conf.d/99user* to: APT::Default-Release "wheezy"; 
 Replace wheezy with your release-name if using testing (jenny) as aof May 14 2013 for example.
 
