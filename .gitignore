@@ -1,4 +1,5 @@
 *.log
+Makefile.local
 debian*/tmp
 debian*/files
 debian*/libqtweetlib-dev/
