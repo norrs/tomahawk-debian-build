@@ -25,13 +25,13 @@ Fetch \*.deb's from http://absint.online.ntnu.no/~norangsh/tomahawk/ for now.
 (these are my builds, updated whenever I feel for it ;-))
 
 Set default release in */etc/apt/apt.conf.d/99user* to: `APT::Default-Release "wheezy";` 
-Replace wheezy with your release-name if using testing (jenny) as aof May 14 2013 for example.
+Replace wheezy with your release-name if using testing (jessie) as aof May 14 2013 for example.
 
 Add experimental and jessie/sid to your APT sources. (required for libattica0.4 liblastfm1 libquazip0)
 
 ```
- deb http://ftp.no.debian.org/debian jenny main contrib non-free
- deb-src http://ftp.no.debian.org/debian jenny main contrib non-free
+ deb http://ftp.no.debian.org/debian jessie main contrib non-free
+ deb-src http://ftp.no.debian.org/debian jessie main contrib non-free
  deb http://ftp.no.debian.org/debian experimental main contrib non-free
  deb-src http://ftp.no.debian.org/debian experimental main contrib non-free
 ```
