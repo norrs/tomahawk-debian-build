@@ -3,7 +3,7 @@ libjreen (1.1.1-1) UNRELEASED; urgency=low
   * Added support for XEP-224: Attentions
   * Fixed roster update receiving on some servers
 
- -- Roy Sindre Norangshol <roy.sindre@norangshol.no>  Mon, 13 May 2013 14:04:43 +0100
+ -- Roy Sindre Norangshol (Rockj) <roy.sindre@norangshol.no>  Mon, 13 May 2013 14:04:43 +0100
 
 libjreen (1.1.0-1) UNRELEASED; urgency=low
 
@@ -15,4 +15,4 @@ libjreen (1.1.0-1) UNRELEASED; urgency=low
   * Fixed sending of IQ's on connect
   * Initial release. (Closes: #XXXXXX)
 
- -- Roy Sindre Norangshol <roy.sindre@norangshol.no>  Fri, 07 Dec 2012 08:23:43 +0100
+ -- Roy Sindre Norangshol (Rockj) <roy.sindre@norangshol.no>  Fri, 07 Dec 2012 08:23:43 +0100
