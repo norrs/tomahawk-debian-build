@@ -1,4 +1,4 @@
-Source: tomahawk-player
+Source: tomahawk-player-nightly
 Section: kde
 Priority: optional
 Maintainer: Roy Sindre Norangshol <roy.sindre@norangshol.no>
@@ -35,7 +35,7 @@ Build-Depends: cmake (>= 2.8.6),
 Standards-Version: 3.9.2
 Homepage: http://tomahawk-player.org
 
-Package: tomahawk-player
+Package: tomahawk-player-nightly
 Architecture: any
 Depends: libqca2-plugin-ossl,
          libqt4-sql-sqlite,
@@ -46,9 +46,9 @@ Description: Social media player
  It hooks you up with your friends — connect with your
  jabber/gtalk/twitter friends and share collections and playlists.
 
-Package: tomahawk-player-dbg
+Package: tomahawk-player-nightly-dbg
 Architecture: any
-Depends: tomahawk-player (= ${binary:Version}), ${misc:Depends}
+Depends: tomahawk-player-nightly (= ${binary:Version}), ${misc:Depends}
 Description: Social media player - debugging symbols
  This package contains the debugging symbols to be used for debugging
  problems with the tomahawk package.

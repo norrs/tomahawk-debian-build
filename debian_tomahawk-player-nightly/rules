@@ -12,4 +12,4 @@ override_dh_auto_configure:
 			     -DCMAKE_INSTALL_LIBEXECDIR=libexec
 
 override_dh_strip:
-	dh_strip -ptomahawk-player --dbg-package=tomahawk-player-dbg
+	dh_strip -ptomahawk-player-nightly --dbg-package=tomahawk-player-nightly-dbg
