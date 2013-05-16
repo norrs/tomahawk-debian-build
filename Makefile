@@ -9,6 +9,8 @@ CORES=8
 ICECC_BIN=/usr/lib/icecc/bin
 PATH := $(ICECC_BIN):${PATH}
 
+ARCH=amd64
+
 B=$(BASEDIR)/build
 
 LIBQTWEET=libqtweetlib
@@ -30,7 +32,7 @@ LIBECHONEST_DEBIAN_URL=http://ftp.de.debian.org/debian/pool/main/libe/libechones
 LIBECHONEST_DEBIAN=libechonest_2.0.1-1.debian
 LIBECHONEST_VERSION=2.0.3
 
-TOMAHAWK=tomahawk-player
+TOMAHAWK=tomahawk-player-nightly
 TOMAHAWK_DIR=$(B)/$(TOMAHAWK)
 TOMAHAWK_DEBIAN=$(TOMAHAWK)_$(NIGHTLY).orig.tar.gz
 TOMAHAWK_UPSTREAM_DIR=$(TOMAHAWK_DIR)/$(TOMAHAWK)-upstream
@@ -42,6 +44,13 @@ SSH_USER=foo
 SSH_TARGET_DIR=/tmp
  
 -include $(BASEDIR)/Makefile.local
+
+
+ifeq ($(ARCH), i386)
+	BPREFIX=linux32
+else
+	BPREFIX=
+endif
 
 
 NIGHTLY=$(shell date +'%Y.%m.%d.nightly')
@@ -66,9 +75,11 @@ nightly_libqtweet: fetch_libqtweet
 	cd $(LIBQTWEET_DIR) && tar -cvzf $(LIBQTWEET)_$(NIGHTLY).orig.tar.gz $(LIBQTWEET)_$(NIGHTLY)
 
 build_libqtweet:
+	[ -d $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY)/debian ] && rm -rf $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY)/debian || exit 0
 	cp -r debian_$(LIBQTWEET) $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY)/debian
 	cd $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY) && DEBFULLNAME="$(DEBFULLNAME)" DEBEMAIL="$(DEBEMAIL)" dch --create -v $(NIGHTLY) "Nightly build $(shell date)" --package libqtweetlib
-	cd $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY) && dpkg-buildpackage -j$(CORES)
+	cd $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY) && $(BPREFIX) dpkg-buildpackage -a$(ARCH) -j$(CORES)
+	#cd $(LIBQTWEET_DIR)/$(LIBQTWEET)_$(NIGHTLY) && dpkg-buildpackage -j$(CORES)
 
 install_libqtweet:
 	for deb_file in $(LIBQTWEET_DIR)/*.deb; do sudo dpkg -i $$deb_file; done
