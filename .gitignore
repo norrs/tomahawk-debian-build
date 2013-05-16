@@ -3,8 +3,6 @@ Makefile.local
 debian*/tmp
 debian*/files
 debian*/libqtweetlib-dev/
-libqtweetlib/
-libechonest/
-libjreen/
-tomahawk-player/
-
+debian*/libjreen/
+debian*/libqtweetlib/
+build/
